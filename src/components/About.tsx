@@ -1,6 +1,12 @@
 import { Code2, Database, Briefcase, Wrench } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export function About() {
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
   const skills = [
     { name: 'React.JS', level: 90, color: 'from-cyan-500 to-blue-500' },
     { name: 'Node.js', level: 85, color: 'from-green-500 to-emerald-500' },
@@ -10,6 +16,32 @@ export function About() {
     { name: 'MySQL', level: 80, color: 'from-blue-500 to-indigo-500' },
     { name: 'Git', level: 85, color: 'from-orange-500 to-red-500' },
   ];
+
+  useEffect(() => {
+    const currentSkill = skills[currentSkillIndex].name;
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        if (displayedText.length < currentSkill.length) {
+          setDisplayedText(currentSkill.substring(0, displayedText.length + 1));
+          setTypingSpeed(150);
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        if (displayedText.length > 0) {
+          setDisplayedText(currentSkill.substring(0, displayedText.length - 1));
+          setTypingSpeed(100);
+        } else {
+          setIsDeleting(false);
+          setCurrentSkillIndex((prev) => (prev + 1) % skills.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, currentSkillIndex, typingSpeed, skills]);
 
   const expertise = [
     {
@@ -74,6 +106,14 @@ export function About() {
 
           <div className="bg-gray-900/50 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
             <h3 className="text-cyan-400 text-xl font-mono mb-4">&lt;skills&gt;</h3>
+
+            <div className="mb-8 h-16 flex items-center">
+              <span className="text-white font-mono text-2xl">
+                {displayedText}
+                <span className="animate-pulse text-cyan-400">|</span>
+              </span>
+            </div>
+
             <div className="space-y-4">
               {skills.map((skill) => (
                 <div key={skill.name}>
