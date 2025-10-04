@@ -10,7 +10,43 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+
+    const toEmail = 'tanyabhatnagar022003@gmail.com';
+    const subject = `Message from ${formData.name || 'Website Visitor'}`;
+    const bodyLines = [
+      `Name: ${formData.name || '-'}`,
+      `Email: ${formData.email || '-'}`,
+      '',
+      `Message:`,
+      formData.message || '-',
+    ];
+    const body = bodyLines.join('\n');
+
+    // Gmail compose URL (opens in browser)
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      toEmail
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // mailto fallback
+    const mailtoUrl = `mailto:${encodeURIComponent(
+      toEmail
+    )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Try to open Gmail compose in new tab. If browser blocks popup, user can click fallback link.
+    try {
+      const opened = window.open(gmailUrl, '_blank');
+      // If window.open returns null (popup blocked) or closed quickly, open mailto as fallback
+      if (!opened) {
+        // fallback to mailto
+        window.location.href = mailtoUrl;
+      }
+    } catch (err) {
+      // on error fallback to mailto
+      window.location.href = mailtoUrl;
+    }
+
+    // Optionally clear form
+    setFormData({ name: '', email: '', message: '' });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -45,7 +81,7 @@ export function Contact() {
                 <div>
                   <h4 className="text-white font-semibold mb-1">Email</h4>
                   <p className="text-gray-400 text-sm font-mono">
-                    "tanyabhatnagar@gmail.com"
+                    "tanyabhatnagar022003@gmail.com"
                   </p>
                 </div>
               </div>
@@ -55,7 +91,7 @@ export function Contact() {
                 <div>
                   <h4 className="text-white font-semibold mb-1">Phone</h4>
                   <p className="text-gray-400 text-sm font-mono">
-                    "+91 98765 43210"
+                    "+91 9039641171"
                   </p>
                 </div>
               </div>
@@ -65,7 +101,7 @@ export function Contact() {
                 <div>
                   <h4 className="text-white font-semibold mb-1">Location</h4>
                   <p className="text-gray-400 text-sm font-mono">
-                    "Roorkee, UP, India"
+                    "Gwalior, MP"
                   </p>
                 </div>
               </div>
@@ -74,18 +110,20 @@ export function Contact() {
                 <h4 className="text-white font-semibold mb-4">Connect With Me</h4>
                 <div className="flex space-x-4">
                   <a
-                    href="https://github.com"
+                    href="https://github.com/tanya-bhatnagar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-cyan-500/20 border border-gray-700 hover:border-cyan-500 rounded-lg transition-all"
+                    title="GitHub"
                   >
                     <Github className="text-cyan-400" size={24} />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/tanya-bhatnagar-763726261/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 flex items-center justify-center bg-gray-800 hover:bg-cyan-500/20 border border-gray-700 hover:border-cyan-500 rounded-lg transition-all"
+                    title="LinkedIn"
                   >
                     <Linkedin className="text-cyan-400" size={24} />
                   </a>
@@ -146,24 +184,31 @@ export function Contact() {
               </div>
 
               <div className="flex space-x-4">
+                {/* Send opens Gmail compose (or mailto fallback) */}
                 <button
                   type="submit"
                   className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold py-3 rounded-lg transition-all"
                 >
                   Send
                 </button>
-                <button
-                  type="button"
-                  className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 rounded-lg transition-all"
+
+                {/* Direct links for GitHub and LinkedIn */}
+                <a
+                  href="https://github.com/tanya-bhatnagar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 rounded-lg transition-all"
                 >
                   GitHub
-                </button>
-                <button
-                  type="button"
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all"
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/tanya-bhatnagar-763726261/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all"
                 >
                   LinkedIn
-                </button>
+                </a>
               </div>
             </form>
 

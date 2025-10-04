@@ -6,22 +6,40 @@ interface HeroProps {
 }
 
 export function Hero({ onScrollToProjects }: HeroProps) {
-  const [currentSkill, setCurrentSkill] = useState(0);
-  const skills = [
-    'Full Stack Developer',
-    'React.js Developer',
-    'Node.js Developer',
-    'Express.js Developer',
-    'SQL Developer',
-    'MERN Stack Developer'
-  ];
+  const skills = ['Full Stack Developer', 'React.js', 'Node.js', 'Express.js', 'SQL'];
+
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSkill((prev) => (prev + 1) % skills.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [skills.length]);
+    const currentSkill = skills[currentSkillIndex];
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        // typing
+        setDisplayedText(currentSkill.substring(0, displayedText.length + 1));
+      } else {
+        // deleting
+        setDisplayedText(currentSkill.substring(0, displayedText.length - 1));
+      }
+
+      // Adjust speed
+      if (!isDeleting && displayedText === currentSkill) {
+        // Pause before deleting
+        setTimeout(() => setIsDeleting(true), 1000);
+        return;
+      } else if (isDeleting && displayedText === '') {
+        setIsDeleting(false);
+        setCurrentSkillIndex((prev) => (prev + 1) % skills.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, isDeleting ? 50 : typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, skills, currentSkillIndex, typingSpeed]);
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-4 relative">
@@ -42,8 +60,9 @@ export function Hero({ onScrollToProjects }: HeroProps) {
         </h2>
 
         <div className="pt-4 h-16 flex items-center justify-center">
-          <p className="text-cyan-400 text-xl sm:text-2xl font-mono transition-all duration-500 animate-fade-in">
-            {skills[currentSkill]}
+          <p className="text-cyan-400 text-xl sm:text-2xl font-mono transition-all duration-500">
+            {displayedText}
+            <span className="border-r-2 border-cyan-400 ml-1 animate-pulse" />
           </p>
         </div>
 
@@ -61,10 +80,14 @@ export function Hero({ onScrollToProjects }: HeroProps) {
           >
             View My Work
           </button>
-          <button className="px-8 py-3 bg-transparent border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold rounded-lg transition-all flex items-center space-x-2">
+          <a
+            href="my-resume-tanya.pdf"
+            download
+            className="px-8 py-3 bg-transparent border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold rounded-lg transition-all flex items-center space-x-2"
+          >
             <Download size={20} />
             <span>Download CV</span>
-          </button>
+          </a>
         </div>
 
         <div className="flex items-center justify-center space-x-6 pt-8">

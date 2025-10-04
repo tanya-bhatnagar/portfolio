@@ -13,11 +13,10 @@ export function Projects() {
         'A user-friendly food ordering platform that allows users to discover restaurant menus, select items, and add them to a cart. Built with ReactJS for the frontend, Node.js/Express for the backend, and SQL for database management.',
       tech: ['ReactJS', 'Node.js', 'Express.js', 'Redux', 'SQL'],
       features: [
-        'User authentication and authorization',
-        'Real-time menu browsing and search',
-        'Shopping cart with order management',
-        'Restaurant dashboard for menu updates',
-        'Order tracking and history',
+        'Menu discovery to browse available dishes',
+        'Item selection for choosing desired food items',
+        'Add to cart functionality before placing orders',
+        'State management using Redux',
         'Responsive design for all devices'
       ],
       github: '#',
@@ -26,58 +25,24 @@ export function Projects() {
     },
     {
       title: 'Jobloom',
-      category: 'Full Stack',
+      category: 'Web Development',
       description:
         'A full-stack job portal built with ReactJS for the frontend, Node.js/Express for the backend, and Clerk for user authentication. It includes features for job posting, application management, and error monitoring with Sentry.',
       tech: ['ReactJS', 'Node.js', 'Express.js', 'Clerk', 'MongoDB', 'Sentry', 'Tailwind CSS'],
       features: [
-        'User authentication with Clerk',
+       'User authentication with Clerk',
         'Responsive design for all devices',
         'Error monitoring with Sentry',
         'ATS resume checker with scoring and suggestions',
         'Career support tools with resume templates, interview tips, and chatbot',
-        'Fully responsive design for all devices'
+        'Fully responsive design for all devices',
+        'Applied jobs tracking with status (Pending/Accepted/Rejected)',
       ],
       github: '#',
       live: '#',
       featured: true,
     },
-    {
-      title: 'EasyTrack',
-      category: 'Web Development',
-      description:
-        'Expense tracking app that helps users manage their finances by logging income and expenses, categorizing transactions, and generating reports to visualize spending patterns.',
-      tech: ['React', 'Node.js', 'Express', 'MySQL'],
-      features: [
-        'Income and expense tracking',
-        'Category-wise transaction management',
-        'Visual reports and charts',
-        'Budget planning tools',
-        'Export data to CSV/PDF',
-        'Multi-currency support'
-      ],
-      github: '#',
-      live: '#',
-      featured: false,
-    },
-    {
-      title: 'BookStore',
-      category: 'Full Stack',
-      description:
-        'Online bookstore with user authentication, book browsing, shopping cart, and order management. Admin panel for managing inventory and orders.',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-      features: [
-        'User authentication and profiles',
-        'Advanced book search and filtering',
-        'Shopping cart and checkout',
-        'Order tracking and history',
-        'Admin panel for inventory management',
-        'Book reviews and ratings'
-      ],
-      github: '#',
-      live: '#',
-      featured: false,
-    },
+    
   ];
 
   const categories = ['All', 'Full Stack', 'Web Development'];

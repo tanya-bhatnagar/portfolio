@@ -14,7 +14,7 @@ export function About() {
     { name: 'JavaScript', level: 88, color: 'from-purple-500 to-pink-500' },
     { name: 'HTML/CSS', level: 92, color: 'from-red-500 to-rose-500' },
     { name: 'MySQL', level: 80, color: 'from-blue-500 to-indigo-500' },
-    { name: 'Git', level: 85, color: 'from-orange-500 to-red-500' },
+    { name: 'c++', level: 70, color: 'from-blue-500 to-indigo-500' },
   ];
 
   useEffect(() => {
@@ -81,24 +81,18 @@ export function About() {
             <h3 className="text-cyan-400 text-xl font-mono mb-4">&lt;profile&gt;</h3>
             <div className="text-gray-300 space-y-4 text-sm leading-relaxed">
               <p>
-                Hi! I'm passionate Computer Science student from Roorkee, UP,
-                currently pursuing my degree at LPU. I specialize in creating
-                responsive and user-centric web applications that solve real-world problems.
+                Hi! I’m a passionate Computer Science student from Gwalior, MP, currently pursuing my B.Tech at ITM , Gwalior.
+                With a solid foundation in full-stack web development, I am enhancing my skills through personal projects and continuous learning.
               </p>
               <p>
-                My journey in programming started with curiosity about how
-                websites work, which led me to dive deep into both front-end
-                and back-end technologies. I specialize in React.js, Express.js,
-                Node.js, and SQL.
+                My journey in programming started with curiosity about how websites work, which led me to dive deep into both frontend and backend technologies.
+                I specialize in Node.js, Express.js, React.js, and SQL.
+                I enjoy creating responsive, efficient, and user-friendly solutions.
               </p>
               <p>
-                I thrive as an ESE Software, where I contributed to the
-                development of PaycardStudy, a food ordering platform with
-                3,000+ real-time users. I've also built projects like LeetByte,
-                EasyTrack, and BookStore Management System, all driven by a
-                smooth functionality and a user-friendly experience. This
-                journey has deepened my love for solving problems and creating
-                digital experiences that make a positive difference.
+                I interned at PS Softech, where I contributed to the development of RestroBuddy, a food ordering platform.
+                My role involved working on both frontend and backend, ensuring smooth functionality and a user-friendly experience.
+                This internship strengthened my skills in Node.js, Express.js, React.js, and SQL, while giving me valuable exposure to real-world project development.
               </p>
             </div>
             <p className="text-cyan-400 text-xl font-mono mt-4">&lt;/profile&gt;</p>
@@ -149,18 +143,31 @@ export function About() {
             );
           })}
         </div>
-
         <div className="mt-12 bg-gray-900/50 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
-          <h3 className="text-cyan-400 text-xl font-mono mb-4">&lt;education&gt;</h3>
-          <div className="space-y-4">
+          <h3 className="text-cyan-400 text-xl font-mono mb-4 text-center font-bold">&lt;education&gt;</h3>
+
+          <div className="space-y-6 text-center">
             <div>
-              <h4 className="text-white font-semibold">B.Tech Computer Science</h4>
-              <p className="text-cyan-400 text-sm">Lovely Professional University</p>
-              <p className="text-gray-400 text-sm">Class 1 (Secondary School)</p>
+              <h4 className="text-white font-mono font-bold text-lg">B.Tech Computer Science</h4>
+              <p className="text-cyan-400 text-sm">CGPA: 8.17 (Current SGPA: 9.33)</p>
+              <p className="text-gray-400 text-sm">2022 - Present | Gwalior, India</p>
+            </div>
+
+            <div>
+              <h4 className="text-white font-mono font-bold text-lg">Class XII (Senior Secondary)</h4>
+              <p className="text-gray-400 text-sm">2021 – 2022 | RamKrishna Vidhya Mandir, CBSE</p>
+            </div>
+
+            <div>
+              <h4 className="text-white font-mono font-bold text-lg">Class X (Secondary School)</h4>
+              <p className="text-gray-400 text-sm">2019 – 2020 | RamKrishna Mission, CBSE</p>
             </div>
           </div>
-          <p className="text-cyan-400 text-xl font-mono mt-4">&lt;/education&gt;</p>
+
+          <p className="text-cyan-400 text-xl font-mono mt-6 text-center font-bold">&lt;/education&gt;</p>
         </div>
+
+
       </div>
     </section>
   );
